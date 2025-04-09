@@ -105,44 +105,28 @@
 /* Contact Section Styles */
 .service-contact {
   padding: 2rem;
-  background-color: var(--slate-grey);
+  /* background-color: var(--slate-grey);  Removed background color */
   border-radius: 8px;
-  margin-top: 2rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
-.service-contact h2 {
-  font-size: 1.5rem;
-  color: var(--plumb-blue);
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.service-contact p {
-  font-size: 1rem;
-  color: var(--charcoal-grey);
-  text-align: center;
-}
-
-.contact-phone-container {
+.contact-container {
   display: flex;
-  align-items: center;
-  margin-top: 1rem;
+  align-items: center; /* Center items within the container */
+  gap: 1rem; /* Space between icon and text */
 }
 
 .contact-phone-icon {
-  width: 2rem; /* Adjust icon size as needed */
+  width: 2rem; /* Larger icon */
   height: 2rem;
-  margin-right: 0.5rem;
-
   /* Style your phone icon here (e.g., color, etc.) */
   /* If it's an SVG, you might use fill="var(--copper)" */
 }
 
 .contact-phone-number {
-  font-size: 3rem; /* Large phone number */
-  color: var(--copper);
+  font-size: 2rem; /* Even larger phone number */
+  color: var(--charcoal-grey);
   font-weight: bold;
 }

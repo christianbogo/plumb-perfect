@@ -98,7 +98,12 @@ function ServiceHighlight() {
 
   return (
     <div className="service-highlight-container">
-      <div className="service-highlight">
+      <div
+        className="service-highlight"
+        onClick={() => {
+          window.location.href = "/services";
+        }}
+      >
         <h2 className="service-highlight-title">We Do It All</h2>
         <p className="service-highlight-subtitle">
           Click Anywhere to View Our Services
@@ -109,6 +114,7 @@ function ServiceHighlight() {
               to="/services" // Navigate to services page on click
               key={service.id}
               className="service-card"
+              onClick={(e) => e.stopPropagation()} // Prevent parent click event
             >
               <img
                 src={service.icon}
@@ -126,6 +132,7 @@ function ServiceHighlight() {
                 to="/services" // Navigate to services page on click
                 key={`${service.id}-reverse`}
                 className="service-card"
+                onClick={(e) => e.stopPropagation()} // Prevent parent click event
               >
                 <img
                   src={service.icon}

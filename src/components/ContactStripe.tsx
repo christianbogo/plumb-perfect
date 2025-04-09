@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/contact-stripe.css";
+import PhoneIcon from "../assets/phone-white.svg"; // Import your phone SVG
 
 function ContactStripe() {
   const [isShortScreen, setIsShortScreen] = useState(false);
@@ -29,7 +30,10 @@ function ContactStripe() {
         <p className="tag">
           {isShortScreen ? "Serving NCW!" : "Serving all of the NCW!"}
         </p>
-        <p className="phone">(509) 286-2178</p>
+        <div className="phone-container">
+          <img src={PhoneIcon} alt="Phone Icon" className="phone-icon" />
+          <p className="phone">(509) 286-2178</p>
+        </div>
       </div>
     </div>
   );

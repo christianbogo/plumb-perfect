@@ -128,13 +128,10 @@ function Service() {
       </div>
 
       {/* Contact for Consultation Section */}
+      {/* Contact for Consultation Section */}
       <div className="service-contact">
-        <h2>Contact Us for a Consultation</h2>
-        <p>
-          Ready to discuss your plumbing needs? Contact Plumb Perfect today for
-          expert consultation and reliable service.
-        </p>
-        <div className="contact-phone-container">
+        {/* Removing the heading and description */}
+        <div className="contact-container">
           <img
             src="../assets/phone.svg"
             alt="Phone Icon"
@@ -143,9 +140,6 @@ function Service() {
           <p className="contact-phone-number">(509) 286-2178</p>
         </div>
       </div>
-      <Link to="/services" className="back-to-services">
-        Back to Services
-      </Link>
     </div>
   );
 }

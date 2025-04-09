@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { addServices } from "../firebase/addServices"; // Adjust the import path as necessary
 
 import "../styles/services.css";
 
@@ -63,7 +64,7 @@ function Services() {
 
   return (
     <div className="page">
-      {/* <button onClick={addServices}>Add Services to Firebase</button> */}
+      <button onClick={addServices}>Add Services to Firebase</button>
       <h1 className="services-title">Our Services</h1>
       <ul className="service-grid">
         {services.map((service) => (

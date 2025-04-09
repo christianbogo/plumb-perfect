@@ -2,14 +2,71 @@
 
 .hero {
   text-align: center;
+  position: relative; /* For positioning the image and fade */
+}
+
+/* Loading state styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px; /* Ensure some minimum height */
+}
+
+.loading-spinner {
+  border: 4px solid var(--slate-grey);
+  border-top: 4px solid var(--plumb-blue);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error state styles */
+.error-container {
+  color: var(--copper);
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid var(--copper);
+  margin-top: 1rem;
+}
+
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  height: auto; /* Adjust height automatically based on width */
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat; /* Prevent the image from tiling */
+  aspect-ratio: 16 / 4; /* Maintain a 16:9 aspect ratio */
+  border-radius: 8px;
+  margin: 2rem 0 0 0;
+  border-bottom: 2px solid var(--slate-grey);
 }
 
 .hero-text {
-  font-size: 2rem; /* Large text */
+  font-size: 2rem;
   color: var(--charcoal-grey);
   line-height: 1.4;
-  margin: 4rem 0;
+  margin: 0 0 1rem 0;
   text-align: center;
+  position: relative; /* To sit above the fade */
+  padding: 1rem; /* Add some padding to the text */
+}
+
+.hero-text.end {
+  margin: 3rem 0;
 }
 
 .hero-text strong {
@@ -17,7 +74,7 @@
 }
 
 .hero-hours {
-  width: calc(80% - 2rem); /* Full width minus padding */
+  width: calc(100% - 2rem);
   margin: 0 auto;
   color: var(--plumb-blue);
   text-align: center;
@@ -25,15 +82,16 @@
   padding: 1rem 1rem 2rem 1rem;
   border-radius: 8px;
   box-shadow: 0 12px 24px rgb(0, 0, 0, 0.1);
+  position: relative; /* To sit above the fade */
 }
 
 .hero-hours h2 {
-  font-size: 1.8rem; /* Large heading */
+  font-size: 1.8rem;
   margin-bottom: 0.75rem;
 }
 
 .hero-hours h3 {
-  font-size: 1.5rem; /* Large sub-heading */
+  font-size: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 0.25rem;
   color: var(--charcoal-grey);
@@ -41,7 +99,7 @@
 }
 
 .hero-hours p {
-  font-size: 1.3rem; /* Large paragraph text */
+  font-size: 1.3rem;
   margin: 0.5rem 0;
   color: var(--charcoal-grey);
 }

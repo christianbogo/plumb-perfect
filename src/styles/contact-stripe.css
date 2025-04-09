@@ -27,3 +27,19 @@
 .contact-stripe .phone {
   font-weight: bold;
 }
+
+.phone-container {
+  display: flex;
+  align-items: center;
+}
+
+.phone-icon {
+  width: 1.5rem; /* Adjust as needed */
+  height: 1.5rem; /* Adjust as needed */
+  margin-right: 0.5rem;
+  fill: var(--white); /* Color the SVG white */
+}
+
+.phone {
+  font-size: 1.5rem;
+}

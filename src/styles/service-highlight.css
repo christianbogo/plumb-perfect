@@ -22,7 +22,7 @@
   overflow: hidden; /* Hide scrollbar and overflow */
   position: relative; /* Needed for positioning elements within */
   padding: 2rem 0 1rem 0; /* Add vertical padding */
-  margin: 2rem auto; /* Add vertical margin */
+  margin: 0 auto; /* Add vertical margin */
   white-space: nowrap; /* Prevent card wrapping */
   background: linear-gradient(180deg, #f7fafc 0%, #eef3f6 100%);
   border-radius: 8px; /* Rounded corners */

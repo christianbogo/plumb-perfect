@@ -28,7 +28,6 @@ function ContactFooter() {
         </div>
       </div>
       <div className="contact-footer-credit">
-        <p>(509)286-2178</p>
         <p>
           Site Managed by{" "}
           <a
