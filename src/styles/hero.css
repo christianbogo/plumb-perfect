@@ -1,0 +1,47 @@
+/* hero.css */
+
+.hero {
+  text-align: center;
+}
+
+.hero-text {
+  font-size: 2rem; /* Large text */
+  color: var(--charcoal-grey);
+  line-height: 1.4;
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.hero-text strong {
+  font-weight: 700;
+}
+
+.hero-hours {
+  width: calc(80% - 2rem); /* Full width minus padding */
+  margin: 0 auto;
+  color: var(--plumb-blue);
+  text-align: center;
+  background-color: var(--white);
+  padding: 1rem 1rem 2rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgb(0, 0, 0, 0.1);
+}
+
+.hero-hours h2 {
+  font-size: 1.8rem; /* Large heading */
+  margin-bottom: 0.75rem;
+}
+
+.hero-hours h3 {
+  font-size: 1.5rem; /* Large sub-heading */
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--charcoal-grey);
+  font-weight: 600;
+}
+
+.hero-hours p {
+  font-size: 1.3rem; /* Large paragraph text */
+  margin: 0.5rem 0;
+  color: var(--charcoal-grey);
+}

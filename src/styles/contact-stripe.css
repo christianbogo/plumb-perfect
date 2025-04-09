@@ -1,0 +1,29 @@
+.contact-stripe {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  color: var(--white);
+  background-color: var(--plumb-blue);
+}
+
+.contact-stripe .content {
+  display: flex;
+  margin: 0 auto;
+  width: calc(100% - 2rem);
+  max-width: 800px;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contact-stripe p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.contact-stripe .phone {
+  font-weight: bold;
+}

@@ -4,11 +4,16 @@ body {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
+  background: linear-gradient(180deg, #fcfcfc 0%, #f2f4f5 100%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 @font-face {
