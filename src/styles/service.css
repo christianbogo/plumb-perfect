@@ -1,0 +1,148 @@
+/* styles/service.css */
+
+/* Loading state styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.loading-spinner {
+  border: 4px solid var(--slate-grey);
+  border-top: 4px solid var(--plumb-blue);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error state styles */
+.error-container {
+  color: var(--copper);
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid var(--copper);
+  margin-top: 1rem;
+}
+
+/* Back to Services Button */
+.back-to-services {
+  display: block;
+  background-color: var(--sky-blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+  width: fit-content;
+  margin: 5rem auto; /* Center the button */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.back-to-services:hover {
+  background-color: var(--plumb-blue);
+}
+
+/* Hero Card Styles */
+.service-hero-card {
+  position: relative;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.service-hero-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.service-heading {
+  font-size: 3rem;
+  font-family: "LibraFranklin-Black", sans-serif;
+  color: var(--white);
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+  text-align: center; /* Ensure text is centered */
+  width: 100%; /* Take up the full width of the card */
+}
+
+/* Body Text Styles */
+.service-body {
+  padding: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--charcoal-grey);
+}
+
+.service-body p {
+  margin-bottom: 1rem;
+}
+
+/* Contact Section Styles */
+.service-contact {
+  padding: 2rem;
+  background-color: var(--slate-grey);
+  border-radius: 8px;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-contact h2 {
+  font-size: 1.5rem;
+  color: var(--plumb-blue);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.service-contact p {
+  font-size: 1rem;
+  color: var(--charcoal-grey);
+  text-align: center;
+}
+
+.contact-phone-container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.contact-phone-icon {
+  width: 2rem; /* Adjust icon size as needed */
+  height: 2rem;
+  margin-right: 0.5rem;
+
+  /* Style your phone icon here (e.g., color, etc.) */
+  /* If it's an SVG, you might use fill="var(--copper)" */
+}
+
+.contact-phone-number {
+  font-size: 3rem; /* Large phone number */
+  color: var(--copper);
+  font-weight: bold;
+}

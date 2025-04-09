@@ -1,0 +1,118 @@
+/* styles/service-highlight.css */
+
+.service-highlight-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--charcoal-grey);
+  text-align: center;
+}
+
+.service-highlight-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--charcoal-grey);
+  text-align: center;
+  margin: 0 0 1rem 0; /* Space between subtitle and cards */
+}
+
+.service-highlight {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Hide scrollbar and overflow */
+  position: relative; /* Needed for positioning elements within */
+  padding: 2rem 0 1rem 0; /* Add vertical padding */
+  margin: 2rem auto; /* Add vertical margin */
+  white-space: nowrap; /* Prevent card wrapping */
+  background: linear-gradient(180deg, #f7fafc 0%, #eef3f6 100%);
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1); /* Inset shadow for "inset" look */
+}
+
+.service-row {
+  display: flex;
+  padding: 1rem 0; /* Add vertical padding */
+  transition: transform 0.3s linear; /* Smooth transition for potential manual scrolling */
+  /* Remove scrollbar */
+  overflow: hidden;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.service-row::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.service-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--charcoal-grey);
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 0 1rem;
+  min-width: 200px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.service-card:first-child {
+  margin-left: 1rem; /* Add left margin to the first card */
+}
+
+.service-card:last-child {
+  margin-right: 1rem; /* Add right margin to the last card */
+}
+
+.service-card .service-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card .service-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  text-wrap: wrap;
+}
+
+/* Loading and Error Styles (You can reuse or adapt from your Services component) */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.loading-spinner {
+  border: 4px solid var(--slate-grey);
+  border-top: 4px solid var(--plumb-blue);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error-container {
+  color: var(--copper);
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid var(--copper);
+  margin-top: 1rem;
+}

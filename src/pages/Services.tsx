@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase/firebase"; // Assuming your Firebase config is here
+import { db } from "../firebase/firebase";
 
-import "../styles/services.css"; // Create a CSS file for this component
-
-import { addServices } from "../firebase/addServices"; // Import the function to add services
+import "../styles/services.css";
 
 function Services() {
   const [services, setServices] = useState<
@@ -36,18 +34,37 @@ function Services() {
     fetchServices();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (loading) {
-    return <div>Loading Services...</div>;
+    return (
+      <div className="page">
+        <h1 className="services-title">Our Services</h1>
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading services...</p>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error loading services: {error}</div>;
+    return (
+      <div className="page">
+        <h1 className="services-title">Our Services</h1>
+        <div className="error-container">
+          <p>Error loading services: {error}</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="page">
       {/* <button onClick={addServices}>Add Services to Firebase</button> */}
-      <h1>Our Services</h1>
+      <h1 className="services-title">Our Services</h1>
       <ul className="service-grid">
         {services.map((service) => (
           <li key={service.id}>
