@@ -1,14 +1,23 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Services from "./pages/Services";
+import About from "./pages/About";
+import ContactStripe from "./components/ContactStripe";
+import NavigationBar from "./components/NavigationBar";
+import ContactFooter from "./components/ContactFooter";
 
 function App() {
   return (
-    <div>
-      <h1 className="libra-franklin">Welcome to Plumb Perfect!</h1>
-      <p>
-        This is a simple plumbing service application built with React and
-        TypeScript.
-      </p>
-    </div>
+    <Router>
+      <ContactStripe />
+      <NavigationBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+      <ContactFooter />
+    </Router>
   );
 }
 
