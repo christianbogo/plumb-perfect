@@ -24,3 +24,10 @@ yarn-error.log*
 
 # dotenv environment variable files
 .env
+
+# firebase
+firebase.json
+.firebaserc
+
+# assets
+/src/assets

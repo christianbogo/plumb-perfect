@@ -1,13 +1,35 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Libre Franklin", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "LibraFranklin-Black";
+  src: local("LibraFranklin Black"),
+    url("./assets/cooper-black.TTF") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.libra-franklin {
+  font-family: "LibraFranklin-Black", sans-serif;
+  font-weight: 900;
+}
+
+:root {
+  --plumb-blue: #0a3d62;
+  --sky-blue: #4da8da;
+  --charcoal-grey: #2e2e2e;
+  --slate-grey: #d9e1e8;
+  --white: #ffffff;
+  --copper: #c1784a;
 }
