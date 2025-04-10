@@ -51,7 +51,7 @@
   background-repeat: no-repeat; /* Prevent the image from tiling */
   aspect-ratio: 16 / 4; /* Maintain a 16:9 aspect ratio */
   border-radius: 8px;
-  margin: 2rem 0 0 0;
+  margin: 5rem 0 0 0;
   border-bottom: 2px solid var(--slate-grey);
 }
 
@@ -62,7 +62,7 @@
   margin: 0 0 1rem 0;
   text-align: center;
   position: relative; /* To sit above the fade */
-  padding: 1rem; /* Add some padding to the text */
+  padding: 0 0 2rem 0; /* Add some padding to the text */
 }
 
 .hero-text.end {

@@ -1,35 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import "../styles/about.css";
 
 const About = () => {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const storage = getStorage();
-
-  useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        const imageRef = ref(
-          storage,
-          "gs://plumb-perfect-5af21.firebasestorage.app/team.png" // Use the same path
-        );
-        const downloadURL = await getDownloadURL(imageRef);
-        setImageUrl(downloadURL);
-        setLoading(false);
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Error loading hero image"
-        );
-        setLoading(false);
-        console.error("Error fetching hero image:", err);
-      }
-    };
-
-    fetchImage();
-  }, [storage]);
-
   return (
     <div className="about-container page">
       <div className="about-content">
@@ -86,26 +57,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      {loading && (
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <p>Loading team image...</p>
-        </div>
-      )}
-
-      {error && (
-        <div className="error-container">
-          <p>{error}</p>
-        </div>
-      )}
-
-      {imageUrl && (
-        <div
-          className="hero-image-container" // Changed class name for clarity
-          style={{ backgroundImage: `url(${imageUrl})` }}
-        ></div>
-      )}
     </div>
   );
 };

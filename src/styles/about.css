@@ -10,7 +10,6 @@
   justify-content: stretch;
   flex-wrap: wrap;
   align-items: center;
-  border-bottom: 2px solid var(--slate-grey); /* Consistent border */
   border-top: 2px solid var(--slate-grey); /* Consistent border */
 }
 
