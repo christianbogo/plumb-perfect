@@ -1,0 +1,68 @@
+/* src/components/about.css */
+
+.about-container {
+  padding: 2rem; /* Consistent padding */
+  font-family: sans-serif; /* Or your preferred font */
+}
+
+.contact-info {
+  display: flex;
+  justify-content: stretch;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 2px solid var(--slate-grey); /* Consistent border */
+  border-top: 2px solid var(--slate-grey); /* Consistent border */
+}
+
+.about-container .hours {
+  flex: 1;
+  text-align: center;
+  text-wrap: nowrap; /* Prevent text from wrapping */
+}
+
+.contact-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-wrap: nowrap; /* Prevent text from wrapping */
+  margin: 1rem 0;
+}
+
+.contact-details p {
+  margin: 0.5rem 0;
+}
+
+.about-container .phone {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: var(--charcoal-grey); /* Consistent color */
+}
+
+.about-container .facebook {
+  display: flex;
+  align-items: center;
+  color: var(--plumb-blue); /* Consistent color */
+}
+
+.about-container .icon {
+  width: 1rem; /* Larger icon size to match service.css */
+  height: 1rem;
+  margin-right: 0.4rem;
+  fill: var(--plumb-blue);
+}
+
+.about-content h2 {
+  color: var(--charcoal-grey);
+  font-size: 2.5rem; /* Size similar to service-heading */
+  margin-bottom: 1.5rem;
+  font-family: "LibraFranklin-Black", sans-serif; /* Use the same font */
+}
+
+.about-content p {
+  line-height: 1.6;
+  color: var(--charcoal-grey); /* Consistent color */
+  font-size: 1.1rem; /* Consistent size */
+  margin-bottom: 1.5rem;
+}

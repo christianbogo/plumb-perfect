@@ -66,7 +66,7 @@
   background-size: cover;
   background-position: center;
   border-radius: 8px;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .service-hero-card::before {
@@ -104,7 +104,7 @@
 
 /* Contact Section Styles */
 .service-contact {
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   /* background-color: var(--slate-grey);  Removed background color */
   border-radius: 8px;
   display: flex;

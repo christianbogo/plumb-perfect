@@ -64,7 +64,7 @@ function Services() {
 
   return (
     <div className="page">
-      <button onClick={addServices}>Add Services to Firebase</button>
+      {/* <button onClick={addServices}>Add Services to Firebase</button> */}
       <h1 className="services-title">Our Services</h1>
       <ul className="service-grid">
         {services.map((service) => (

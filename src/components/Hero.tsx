@@ -61,9 +61,9 @@ function Hero() {
       <div className="hero-hours">
         <h2>Our Hours</h2>
         <h3>Plumbing Services</h3>
-        <p>Monday-Friday: 8AM - 5PM</p>
+        <p>Monday-Friday: 8AM - 4PM</p>
         <h3>Emergency Services</h3>
-        <p>Monday-Friday: 4PM - 5AM </p>
+        <p>Monday-Friday: 4PM - 8AM </p>
         <p>Weekends & Holidays</p>
       </div>
     </section>
