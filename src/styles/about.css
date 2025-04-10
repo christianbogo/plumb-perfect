@@ -9,6 +9,7 @@
   display: flex;
   justify-content: stretch;
   flex-wrap: wrap;
+  gap: 3rem; /* Space between items */
   align-items: center;
   border-top: 2px solid var(--slate-grey); /* Consistent border */
 }
@@ -25,7 +26,7 @@
   flex-direction: column;
   align-items: center;
   text-wrap: nowrap; /* Prevent text from wrapping */
-  margin: 1rem 0;
+  margin: 0 0 2rem 0;
 }
 
 .contact-details p {
