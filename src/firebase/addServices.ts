@@ -7,7 +7,7 @@ export async function addServices() {
       {
         url: "drain-and-drain-cleaning",
         icon: "/assets/icons/drain.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/drain.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/drain.png",
         title: "Drain Cleaning Services",
         heading: "Unclogging & Drain Cleaning",
         bodyTexts: [
@@ -18,7 +18,7 @@ export async function addServices() {
       {
         url: "simply-sewer-hydrojetting",
         icon: "/assets/icons/hydrojetting.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/hydrojetting.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/hydrojetting.png",
         title: "Simply Sewer Hydrojetting Services",
         heading: "Simply Sewer Hydrojetting",
         bodyTexts: [
@@ -29,7 +29,7 @@ export async function addServices() {
       {
         url: "backflow-testing-install",
         icon: "/assets/icons/backflow.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/backflow.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/backflow.png",
         title: "Backflow Prevention Testing & Installation Services",
         heading: "Backflow Testing & Install",
         bodyTexts: [
@@ -40,7 +40,7 @@ export async function addServices() {
       {
         url: "toilet-repair-install",
         icon: "/assets/icons/toilet.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/toilet.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/toilet.png",
         title: "Toilet Repair and Installation Services",
         heading: "Toilet Repair & Install",
         bodyTexts: [
@@ -51,7 +51,7 @@ export async function addServices() {
       {
         url: "water-main-service-install",
         icon: "/assets/icons/water-main.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/water-main.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/water-main.png",
         title: "Water Main Repair, Replacement & Installation Services",
         heading: "Water Main Service & Install",
         bodyTexts: [
@@ -62,7 +62,7 @@ export async function addServices() {
       {
         url: "faucets-fixtures-sinks",
         icon: "/assets/icons/faucet.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/faucet.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/faucet.png",
         title: "Faucet, Fixture & Sink Installation and Repair",
         heading: "Faucets, Fixtures, & Sinks",
         bodyTexts: [
@@ -73,7 +73,7 @@ export async function addServices() {
       {
         url: "showers-and-tubs",
         icon: "/assets/icons/shower.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/shower.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/shower.png",
         title: "Shower and Tub Installation & Repair Services",
         heading: "Showers & Tubs",
         bodyTexts: [
@@ -84,7 +84,7 @@ export async function addServices() {
       {
         url: "water-filtration-systems",
         icon: "/assets/icons/water-filter.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/water-filter.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/water-filter.png",
         title: "Water Filtration System Installation & Maintenance",
         heading: "Water Filtration Systems",
         bodyTexts: [
@@ -96,7 +96,7 @@ export async function addServices() {
         url: "garbage-disposals",
         icon: "/assets/icons/garbage-disposal.svg",
         image:
-          "gs://plumb-perfect-5af21.firebasestorage.app/garbage-disposal.jpeg",
+          "gs://plumb-perfect-5af21.firebasestorage.app/garbage-disposal.png",
         title: "Garbage Disposal Repair & Installation Services",
         heading: "Garbage Disposals",
         bodyTexts: [
@@ -107,7 +107,7 @@ export async function addServices() {
       {
         url: "pipe-leaks-replacements",
         icon: "/assets/icons/pipe-leak.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/pipe-leak.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/pipe-leak.png",
         title: "Pipe Leak Repair, Split Fixing & Pipe Replacement",
         heading: "Pipe Leaks & Replacements",
         bodyTexts: [
@@ -118,7 +118,7 @@ export async function addServices() {
       {
         url: "water-heaters",
         icon: "/assets/icons/water-heater.svg",
-        image: "gs://plumb-perfect-5af21.firebasestorage.app/water-heater.jpeg",
+        image: "gs://plumb-perfect-5af21.firebasestorage.app/water-heater.png",
         title: "Water Heater Repair & Installation Services",
         heading: "Water Heaters",
         bodyTexts: [
