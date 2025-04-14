@@ -1,11 +1,13 @@
 import Hero from "../components/Hero";
 import Review from "../components/Review";
+import History from "../components/History";
 import ServiceHighlight from "../components/ServiceHighlight";
 
 function Home() {
   return (
     <div className="page">
       <Hero />
+      <History />
       <Review />
       <ServiceHighlight />
       <div className="hero-text end">

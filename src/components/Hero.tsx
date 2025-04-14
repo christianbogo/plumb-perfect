@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
 import "../styles/hero.css";
 
 function Hero() {
@@ -58,6 +59,7 @@ function Hero() {
           <strong>North Central Washington</strong> Since 1998
         </p>
       </div>
+
       <div className="hero-hours">
         <h2>Our Hours</h2>
         <h3>Plumbing Services</h3>

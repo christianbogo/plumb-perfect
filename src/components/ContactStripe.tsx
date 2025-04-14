@@ -32,7 +32,7 @@ function ContactStripe() {
         </p>
         <div className="phone-container">
           <img src={PhoneIcon} alt="Phone Icon" className="phone-icon" />
-          <p className="phone">(509) 286-2178</p>
+          <p className="phone">(509) 663-3602</p>
         </div>
       </div>
     </div>

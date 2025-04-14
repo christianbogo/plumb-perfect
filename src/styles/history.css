@@ -1,0 +1,56 @@
+.history-quote {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  flex-direction: column;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  gap: 1rem; /* Space between image and text */
+  margin: 6rem auto 0 auto; /* Add vertical spacing and center the section */
+  padding: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    #f5fcff,
+    #ecf8ff
+  ); /* Softer light cyan blue gradient */
+  border: 2px solid #d6f0ff; /* Subtle cyan blue border for separation */
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(138, 149, 159, 0.1); /* Noticeably cyan blue shadow */
+  max-width: 80%; /* Limit width for larger screens */
+}
+
+.history-quote img {
+  max-width: 225px; /* Adjust image size as needed */
+  height: auto;
+  border-radius: 8px;
+}
+
+.history-quote-text {
+  flex: 1; /* Take remaining space */
+  color: #2e5c81; /* Deep blue color to match the cyan background */
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.history-quote-text h2,
+.history-quote-text p {
+  margin: 0.5rem 0 0 0; /* Add vertical spacing */
+}
+
+/* Media query for larger screens (adjust as needed) */
+@media (min-width: 600px) {
+  .history-quote {
+    flex-direction: row; /* Change to row layout on larger screens */
+    flex-wrap: nowrap; /* Keep image and text in a row */
+    text-align: left;
+  }
+
+  .history-quote img {
+    margin-bottom: 0; /* Remove bottom margin on larger screens */
+    margin-right: 1rem;
+  }
+
+  .history-quote-text {
+    text-align: left;
+  }
+}

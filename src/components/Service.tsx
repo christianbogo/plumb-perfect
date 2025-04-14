@@ -137,7 +137,7 @@ function Service() {
             alt="Phone Icon"
             className="contact-phone-icon"
           />
-          <p className="contact-phone-number">(509) 286-2178</p>
+          <p className="contact-phone-number">(509) 663-3602</p>
         </div>
       </div>
     </div>

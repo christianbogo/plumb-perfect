@@ -37,7 +37,7 @@ const About = () => {
         <div className="contact-details">
           <div className="phone">
             <img src="../assets/phone.svg" alt="Phone Icon" className="icon" />
-            <p>(509) 286-2178</p>
+            <p>(509) 663-3602</p>
           </div>
           <div
             className="facebook"
