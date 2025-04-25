@@ -40,7 +40,8 @@
   color: var(--charcoal-grey); /* Consistent color */
 }
 
-.about-container .facebook {
+.about-container .facebook,
+.about-container .instagram {
   display: flex;
   align-items: center;
   color: var(--plumb-blue); /* Consistent color */

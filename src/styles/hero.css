@@ -5,6 +5,12 @@
   position: relative; /* For positioning the image and fade */
 }
 
+.hero-logo {
+  width: 75%;
+  max-width: 500px; /* Limit the logo size */
+  margin: 3rem auto; /* Center the logo */
+}
+
 /* Loading state styles */
 .loading-container {
   display: flex;
@@ -42,7 +48,7 @@
   margin-top: 1rem;
 }
 
-.hero-image-container {
+.hero-image {
   position: relative;
   width: 100%;
   height: auto; /* Adjust height automatically based on width */
@@ -51,7 +57,6 @@
   background-repeat: no-repeat; /* Prevent the image from tiling */
   aspect-ratio: 16 / 4; /* Maintain a 16:9 aspect ratio */
   border-radius: 8px;
-  margin: 5rem 0 0 0;
   border-bottom: 2px solid var(--slate-grey);
 }
 

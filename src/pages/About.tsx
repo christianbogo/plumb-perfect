@@ -55,6 +55,19 @@ const About = () => {
             />
             <p>PlumbPerfect</p>
           </div>
+          <div
+            className="instagram"
+            onClick={() =>
+              window.open("https://www.instagram.com/plumbperfect98/", "_blank")
+            }
+          >
+            <img
+              src="../assets/instagram.svg"
+              alt="Instagram Icon"
+              className="icon"
+            />
+            <p>PlumbPerfect98</p>
+          </div>
         </div>
       </div>
     </div>
