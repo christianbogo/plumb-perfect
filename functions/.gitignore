@@ -1,0 +1,36 @@
+# Dependencies for functions
+node_modules/
+
+# Transpiled JavaScript code - Generated from your TypeScript source
+lib/ 
+
+# Environment Variables / Runtime Config
+.env
+.env.*
+!.env.example
+.runtimeconfig.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# Test Output / Coverage Reports
+coverage/
+*.lcov
+
+# Optional: Dependency Cache / Lockfile logs
+.npm/
+.yarn/cache/
+.yarn/install-state.gz
+.pnp.*
+
+# Optional: Other specific tool caches/outputs
+# .eslintcache
+# *.tsbuildinfo # TypeScript incremental build info

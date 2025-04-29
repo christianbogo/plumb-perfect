@@ -4,7 +4,6 @@
   padding: 2rem;
   margin: 2rem auto; /* Center the review block */
   max-width: 600px; /* Limit the width for better readability */
-  font-family: "Georgia", serif; /* A classic font for quotes */
 }
 
 .review-text {
@@ -12,6 +11,7 @@
   line-height: 1.6;
   color: var(--charcoal-grey);
   font-style: italic;
+  font-family: "Georgia", serif; /* A classic font for quotes */
 }
 
 .review-author {
@@ -19,4 +19,12 @@
   color: var(--plumb-blue);
   text-align: right;
   font-weight: bold;
+  font-family: "Georgia", serif; /* A classic font for quotes */
+}
+
+.review-container .call-to-action {
+  margin-top: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  opacity: 0.6;
 }
