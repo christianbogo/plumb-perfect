@@ -1,33 +1,33 @@
 // src/components/Review.tsx
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-// Import the function caller and type definition. Rename type to avoid naming conflict.
+import { useNavigate } from "react-router-dom"; // <-- Re-added
+// Import the function caller and type definition.
 import {
   callGetGoogleReviews,
   Review as ReviewData,
 } from "../firebase/firebase"; // Adjust path if needed
 import "../styles/review.css"; // Ensure this CSS file exists
 
+// Re-add constants for timing
 const REVIEW_CYCLE_INTERVAL_MS = 8000; // 8 seconds
 const FADE_TRANSITION_MS = 500; // 0.5 seconds (must match CSS transition duration)
 
 function Review() {
   const [reviews, setReviews] = useState<ReviewData[]>([]);
+  // We still need currentIndex to know *which* random review is showing
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isFading, setIsFading] = useState<boolean>(false); // To control fade CSS class
+  const [isFading, setIsFading] = useState<boolean>(false); // <-- Re-added fade state
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
-  const intervalRef = useRef<NodeJS.Timeout | null>(null); // To store interval ID for cleanup
+  const navigate = useNavigate(); // <-- Re-added
+  const intervalRef = useRef<NodeJS.Timeout | null>(null); // <-- Re-added interval ref
 
   // --- Configuration ---
-  // !! Replace with your actual Place ID !!
-  const placeId = "ChIJ75f7XrvMm1QR7DVdfw7zCnU"; // <-- Replace with Plumb Perfect's Place ID
+  const placeId = "ChIJ75f7XrvMm1QR7DVdfw7zCnU";
   // ---------------------
 
-  // 1. Effect to Fetch Reviews
+  // 1. Effect to Fetch Reviews (Select initial random review)
   useEffect(() => {
-    // Basic validation
     if (!placeId) {
       setError("Review component needs a valid Place ID.");
       setIsLoading(false);
@@ -37,7 +37,7 @@ function Review() {
 
     const fetchReviews = async () => {
       setIsLoading(true);
-      setError(null); // Reset error on new fetch
+      setError(null);
       try {
         console.log(
           `Review: Calling Firebase Function 'getGoogleReviews' for placeId: ${placeId}`
@@ -46,20 +46,20 @@ function Review() {
         console.log("Review: Firebase Function response:", result.data);
 
         if (result.data.success && result.data.reviews) {
-          // Filter for reviews that actually have text content
           const validReviews = result.data.reviews.filter(
             (r) => r.text && r.text.trim() !== ""
           );
           if (validReviews.length > 0) {
             setReviews(validReviews);
-            setCurrentIndex(0); // Start from the first review
+            // --- Modification: Set initial index randomly ---
+            const randomIndex = Math.floor(Math.random() * validReviews.length);
+            setCurrentIndex(randomIndex);
+            // -------------------------------------------------
           } else {
             setReviews([]);
-            // Don't set an error, just indicate no reviews found
             console.log("No reviews with text content found.");
           }
         } else {
-          // Handle errors reported by the cloud function
           throw new Error(
             result.data.error || "Function call failed to retrieve reviews."
           );
@@ -72,44 +72,49 @@ function Review() {
         const message =
           err.message || "An error occurred while fetching reviews.";
         setError(message);
-        setReviews([]); // Clear reviews on error
+        setReviews([]);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchReviews();
-  }, [placeId]); // Dependency array ensures fetch runs only if placeId changes
+  }, [placeId]);
 
-  // 2. Effect to Cycle Through Reviews with Fade
+  // 2. Effect to Cycle Through Reviews Randomly with Fade
   useEffect(() => {
-    // Clear previous interval if reviews update or component unmounts
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
 
-    // Only cycle if we have more than one review and are not loading/in error state
+    // Only cycle if we have more than one review and not loading/error
     if (reviews.length > 1 && !isLoading && !error) {
       intervalRef.current = setInterval(() => {
-        setIsFading(true); // Trigger fade-out
+        setIsFading(true); // Start fade-out
 
-        // Wait for the fade-out transition to finish
         setTimeout(() => {
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length); // Move to next review (looping)
-          setIsFading(false); // Trigger fade-in
+          // --- Modification: Pick a new random index ---
+          let nextIndex;
+          do {
+            nextIndex = Math.floor(Math.random() * reviews.length);
+          } while (nextIndex === currentIndex); // Ensure it's different from the current one
+          setCurrentIndex(nextIndex);
+          // ---------------------------------------------
+          setIsFading(false); // Start fade-in
         }, FADE_TRANSITION_MS);
       }, REVIEW_CYCLE_INTERVAL_MS);
     }
 
-    // Cleanup function: clear interval when component unmounts or dependencies change
+    // Cleanup function
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [reviews, isLoading, error]); // Re-run this effect if reviews, loading, or error changes
+    // Depend on currentIndex as well, so the check inside interval runs with latest value
+  }, [reviews, isLoading, error, currentIndex]);
 
-  // 3. Click Handler for Navigation
+  // 3. Click Handler for Navigation (Re-added)
   const handleNavigate = () => {
     navigate("/about");
   };
@@ -117,14 +122,12 @@ function Review() {
   // --- Render Logic ---
 
   if (isLoading) {
-    // Maintain layout space while loading, or show simple text
     return (
       <div className="review-container-placeholder">Loading Reviews...</div>
     );
   }
 
   if (error) {
-    // Show error message if fetching failed
     return (
       <div className="review-container-placeholder" style={{ color: "red" }}>
         Error: {error}
@@ -133,7 +136,6 @@ function Review() {
   }
 
   if (reviews.length === 0) {
-    // Handle case where fetch succeeded but no reviews were found/valid
     return (
       <div className="review-container-placeholder">
         No customer reviews available at the moment.
@@ -141,21 +143,32 @@ function Review() {
     );
   }
 
-  // Get the currently active review
-  const currentReview = reviews[currentIndex];
+  // Get the currently active random review
+  // Handle potential edge case where reviews array might be briefly empty during state transition
+  const currentReview = reviews[currentIndex] || null;
+
+  // Avoid rendering if currentReview is somehow null temporarily
+  if (!currentReview) {
+    return (
+      <div className="review-container-placeholder">Loading Review...</div>
+    ); // Or some placeholder
+  }
 
   return (
+    // Re-added onClick, title, style cursor
     <div
       className="review-container"
-      onClick={handleNavigate} // Make the whole container clickable
-      title="Click to see more reviews" // Accessibility and usability hint
-      style={{ cursor: "pointer" }} // Visual cue for clickability
+      onClick={handleNavigate}
+      title="Click to see more reviews"
+      style={{ cursor: "pointer" }}
     >
       {/* Wrapper div for the content that needs to fade */}
+      {/* Ensure CSS handles the fade based on this class */}
       <div className={`review-content ${isFading ? "fading" : ""}`}>
         <p className="review-text">"{currentReview.text}"</p>
         <p className="review-author">- {currentReview.author_name}</p>
       </div>
+      {/* Re-added call-to-action */}
       <p className="call-to-action">Click to see more reviews!</p>
     </div>
   );

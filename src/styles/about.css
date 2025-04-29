@@ -12,6 +12,7 @@
   gap: 3rem; /* Space between items */
   align-items: center;
   border-top: 2px solid var(--slate-grey); /* Consistent border */
+  border-bottom: 2px solid var(--slate-grey); /* Consistent border */
 }
 
 .about-container .hours {
@@ -66,4 +67,11 @@
   color: var(--charcoal-grey); /* Consistent color */
   font-size: 1.1rem; /* Consistent size */
   margin-bottom: 1.5rem;
+}
+
+.all-reviews-section h1 {
+  color: var(--charcoal-grey);
+  font-size: 2.5rem; /* Size similar to service-heading */
+  font-family: "LibraFranklin-Black", sans-serif; /* Use the same font */
+  text-align: center;
 }

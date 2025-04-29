@@ -5,7 +5,7 @@
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
   gap: 1rem; /* Space between image and text */
-  margin: 6rem auto 0 auto; /* Add vertical spacing and center the section */
+  margin: 6rem auto 3rem auto; /* Add vertical spacing and center the section */
   padding: 1.5rem;
   background: linear-gradient(
     135deg,

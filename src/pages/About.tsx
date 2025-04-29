@@ -1,8 +1,85 @@
+// src/components/About.tsx
+import React, { useState, useEffect } from "react"; // <-- Added useState, useEffect
 import "../styles/about.css";
+import "../styles/review.css"; // <-- Import review styles to ensure they apply
+
+// Import the function caller and type definition.
+import {
+  callGetGoogleReviews,
+  Review as ReviewData,
+} from "../firebase/firebase"; // Adjust path if needed
 
 const About = () => {
+  // --- State for Reviews ---
+  const [reviews, setReviews] = useState<ReviewData[]>([]);
+  const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(true); // Use specific loading state name
+  const [reviewsError, setReviewsError] = useState<string | null>(null); // Use specific error state name
+  // -------------------------
+
+  // --- Configuration ---
+  const placeId = "ChIJ75f7XrvMm1QR7DVdfw7zCnU"; // Plumb Perfect's Place ID
+  // ---------------------
+
+  // --- Effect to Fetch Reviews ---
+  useEffect(() => {
+    // This fetching logic is copied & adapted from Review.tsx
+    if (!placeId) {
+      setReviewsError("Review fetching needs a valid Place ID.");
+      setIsLoadingReviews(false);
+      console.warn(
+        "Place ID is not configured for review fetching in About component."
+      );
+      return;
+    }
+
+    const fetchReviews = async () => {
+      setIsLoadingReviews(true);
+      setReviewsError(null);
+      try {
+        console.log(
+          `About: Calling Firebase Function 'getGoogleReviews' for placeId: ${placeId}`
+        );
+        const result = await callGetGoogleReviews({ placeId });
+        console.log("About: Firebase Function response:", result.data);
+
+        if (result.data.success && result.data.reviews) {
+          const validReviews = result.data.reviews.filter(
+            (r) => r.text && r.text.trim() !== ""
+          );
+          if (validReviews.length > 0) {
+            setReviews(validReviews);
+            // No need to set currentIndex here
+          } else {
+            setReviews([]);
+            console.log("About: No reviews with text content found.");
+          }
+        } else {
+          throw new Error(
+            result.data.error || "Function call failed to retrieve reviews."
+          );
+        }
+      } catch (err: any) {
+        console.error(
+          "About: Failed to fetch reviews via Firebase Function:",
+          err
+        );
+        const message =
+          err.message || "An error occurred while fetching reviews.";
+        setReviewsError(message);
+        setReviews([]);
+      } finally {
+        setIsLoadingReviews(false);
+      }
+    };
+
+    fetchReviews();
+  }, [placeId]); // Dependency array ensures fetch runs once
+  // --- End Effect ---
+
   return (
+    // Keep existing main container and 'page' class if used for layout
     <div className="about-container page">
+      {/* --- Existing About Content --- */}
       <div className="about-content">
         <h2>About Plumb Perfect</h2>
         <p>
@@ -26,6 +103,9 @@ const About = () => {
           needs with precision and expertise.
         </p>
       </div>
+      {/* --- End Existing About Content --- */}
+
+      {/* --- Existing Contact Info --- */}
       <div className="contact-info">
         <div className="hours">
           <h3>Plumbing Services</h3>
@@ -47,6 +127,7 @@ const About = () => {
                 "_blank"
               )
             }
+            style={{ cursor: "pointer" }} // Add cursor for clickable elements
           >
             <img
               src="../assets/facebook.svg"
@@ -60,6 +141,7 @@ const About = () => {
             onClick={() =>
               window.open("https://www.instagram.com/plumbperfect98/", "_blank")
             }
+            style={{ cursor: "pointer" }} // Add cursor for clickable elements
           >
             <img
               src="../assets/instagram.svg"
@@ -70,7 +152,67 @@ const About = () => {
           </div>
         </div>
       </div>
-    </div>
+      {/* --- End Existing Contact Info --- */}
+
+      {/* --- New Reviews Section --- */}
+      <div className="all-reviews-section">
+        <h1>What Our Customers Say</h1>
+
+        {/* Loading State */}
+        {isLoadingReviews && (
+          <div
+            className="review-container-placeholder"
+            style={{ margin: "1rem auto" }}
+          >
+            Loading Reviews...
+          </div>
+        )}
+
+        {/* Error State */}
+        {reviewsError && (
+          <div
+            className="review-container-placeholder"
+            style={{ color: "red", margin: "1rem auto" }}
+          >
+            Error loading reviews: {reviewsError}
+          </div>
+        )}
+
+        {/* No Reviews State (After loading, if fetch was successful but returned none) */}
+        {!isLoadingReviews && !reviewsError && reviews.length === 0 && (
+          <div
+            className="review-container-placeholder"
+            style={{ margin: "1rem auto" }}
+          >
+            No customer reviews available at the moment.
+          </div>
+        )}
+
+        {/* Display Reviews */}
+        {!isLoadingReviews &&
+          !reviewsError &&
+          reviews.length > 0 &&
+          reviews.map((review) => (
+            // Use the EXACT same class structure as the single review component
+            // Use review.time or another unique identifier from the review data if available for the key
+            // Using index as fallback key if time isn't unique or available
+            <div
+              key={review.time || review.author_name + review.rating}
+              className="review-container"
+            >
+              {/* Removed onClick, title, style cursor */}
+              <div className="review-content">
+                {" "}
+                {/* No fade class needed */}
+                <p className="review-text">"{review.text}"</p>
+                <p className="review-author">- {review.author_name}</p>
+              </div>
+              {/* No call-to-action here */}
+            </div>
+          ))}
+      </div>
+      {/* --- End New Reviews Section --- */}
+    </div> // End about-container page
   );
 };
 

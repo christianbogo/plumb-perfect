@@ -1,5 +1,9 @@
 /* styles/service-highlight.css */
 
+.service-highlight-container {
+  margin: 3rem 0;
+}
+
 .service-highlight-title {
   margin: 0;
   font-size: 1.5rem;
