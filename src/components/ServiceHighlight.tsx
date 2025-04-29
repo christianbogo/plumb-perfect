@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-import "../styles/service-highlight.css"; // Create a CSS file for this component
+import "../styles/service-highlight.css";
 
 function ServiceHighlight() {
   const [services, setServices] = useState<
@@ -10,8 +10,8 @@ function ServiceHighlight() {
   >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null); // For scrolling control
-  const containerRefReverse = useRef<HTMLDivElement>(null); // For reverse scrolling control
+  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRefReverse = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -37,16 +37,15 @@ function ServiceHighlight() {
 
   useEffect(() => {
     if (!loading && !error && services.length > 0) {
-      // Animation logic for the first container
       const container = containerRef.current;
       if (container) {
-        let scrollAmount = 1200; // Start scrolling from a specific position
-        const scrollSpeed = 0.3; // Adjust the scroll speed
+        let scrollAmount = 1200;
+        const scrollSpeed = 0.3;
         const animateContainer = () => {
           container.scrollLeft = scrollAmount;
           scrollAmount += scrollSpeed;
           if (scrollAmount >= container.scrollWidth - container.clientWidth) {
-            scrollAmount = 0; // Reset scroll to beginning
+            scrollAmount = 0;
           }
           requestAnimationFrame(animateContainer);
         };
@@ -54,18 +53,17 @@ function ServiceHighlight() {
         requestAnimationFrame(animateContainer);
       }
 
-      // Animation logic for the reverse container
       const containerReverse = containerRefReverse.current;
       if (containerReverse) {
         let scrollAmountReverse =
           containerReverse.scrollWidth - containerReverse.clientWidth;
-        const scrollSpeedReverse = 0.3; // Adjust the scroll speed
+        const scrollSpeedReverse = 0.3;
         const animateContainerReverse = () => {
           containerReverse.scrollLeft = scrollAmountReverse;
           scrollAmountReverse -= scrollSpeedReverse;
           if (scrollAmountReverse <= 0) {
             scrollAmountReverse =
-              containerReverse.scrollWidth - containerReverse.clientWidth; // Reset scroll to end
+              containerReverse.scrollWidth - containerReverse.clientWidth;
           }
           requestAnimationFrame(animateContainerReverse);
         };
@@ -111,10 +109,10 @@ function ServiceHighlight() {
         <div className="service-row" ref={containerRefReverse}>
           {services.map((service) => (
             <Link
-              to="/services" // Navigate to services page on click
+              to="/services"
               key={service.id}
               className="service-card"
-              onClick={(e) => e.stopPropagation()} // Prevent parent click event
+              onClick={(e) => e.stopPropagation()}
             >
               <img
                 src={service.icon}
@@ -129,10 +127,10 @@ function ServiceHighlight() {
           {services
             .map((service) => (
               <Link
-                to="/services" // Navigate to services page on click
+                to="/services"
                 key={`${service.id}-reverse`}
                 className="service-card"
-                onClick={(e) => e.stopPropagation()} // Prevent parent click event
+                onClick={(e) => e.stopPropagation()}
               >
                 <img
                   src={service.icon}

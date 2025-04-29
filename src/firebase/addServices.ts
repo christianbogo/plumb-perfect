@@ -1,5 +1,5 @@
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "./firebase"; // Assuming your Firebase config is in './firebase.js' (relative path corrected)
+import { db } from "./firebase";
 
 export async function addServices() {
   try {

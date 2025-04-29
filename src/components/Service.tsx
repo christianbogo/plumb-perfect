@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { Link } from "react-router-dom"; // Import Link for navigation
-import "../styles/service.css"; // Create a CSS file for this component
+import { Link } from "react-router-dom";
+import "../styles/service.css";
 
 function Service() {
   const { serviceUrl } = useParams();
@@ -46,7 +46,6 @@ function Service() {
             }
             setService(serviceData);
 
-            // Fetch image URL from Firebase Storage
             if (serviceData.image) {
               const imageRef = ref(storage, serviceData.image);
               const downloadURL = await getDownloadURL(imageRef);
@@ -121,16 +120,12 @@ function Service() {
         <h1 className="service-heading">{service.heading}</h1>
       </div>
 
-      {/* Body Text Section */}
       <div className="service-body">
         {service.bodyTexts &&
           service.bodyTexts.map((text, index) => <p key={index}>{text}</p>)}
       </div>
 
-      {/* Contact for Consultation Section */}
-      {/* Contact for Consultation Section */}
       <div className="service-contact">
-        {/* Removing the heading and description */}
         <div className="contact-container">
           <img
             src="../assets/phone.svg"
