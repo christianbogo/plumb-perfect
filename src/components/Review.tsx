@@ -39,11 +39,7 @@ function Review() {
       setIsLoading(true);
       setError(null);
       try {
-        console.log(
-          `Review: Calling Firebase Function 'getGoogleReviews' for placeId: ${placeId}`
-        );
         const result = await callGetGoogleReviews({ placeId });
-        console.log("Review: Firebase Function response:", result.data);
 
         if (result.data.success && result.data.reviews) {
           const validReviews = result.data.reviews.filter(

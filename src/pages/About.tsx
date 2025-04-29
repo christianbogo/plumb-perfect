@@ -36,11 +36,7 @@ const About = () => {
       setIsLoadingReviews(true);
       setReviewsError(null);
       try {
-        console.log(
-          `About: Calling Firebase Function 'getGoogleReviews' for placeId: ${placeId}`
-        );
         const result = await callGetGoogleReviews({ placeId });
-        console.log("About: Firebase Function response:", result.data);
 
         if (result.data.success && result.data.reviews) {
           const validReviews = result.data.reviews.filter(
@@ -51,7 +47,6 @@ const About = () => {
             // No need to set currentIndex here
           } else {
             setReviews([]);
-            console.log("About: No reviews with text content found.");
           }
         } else {
           throw new Error(
