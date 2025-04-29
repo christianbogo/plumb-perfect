@@ -72,7 +72,9 @@ export const getGoogleReviews = functions.https.onCall(
         );
         throw new functions.https.HttpsError(
           "internal",
-          `Failed to fetch data from Google API. Status: ${googleApiResponse.status}`,
+          `Failed to fetch data from Google API. Status: ${
+            googleApiResponse.status
+          }`,
         );
       }
 
@@ -103,7 +105,9 @@ export const getGoogleReviews = functions.https.onCall(
         );
         throw new functions.https.HttpsError(
           "internal",
-          `Google API returned status: ${googleData.status} - ${googleData.error_message || "Unknown error"}`,
+          `Google API returned status: ${googleData.status} - ${
+            googleData.error_message || "Unknown error"
+          }`,
         );
       }
     } catch (error: unknown) {
