@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { Link } from "react-router-dom";
 import "../styles/service.css";
 
 function Service() {

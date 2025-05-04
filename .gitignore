@@ -28,6 +28,3 @@ yarn-error.log*
 # firebase
 firebase.json
 .firebaserc
-
-# assets
-/src/assets
