@@ -30,4 +30,4 @@ firebase.json
 .firebaserc
 
 # photoshop contains api secrets
-src/assets/pics/team.psd
+.psd
