@@ -28,6 +28,3 @@ yarn-error.log*
 # firebase
 firebase.json
 .firebaserc
-
-# photoshop contains api secrets
-.psd
