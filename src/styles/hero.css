@@ -108,3 +108,18 @@
   margin: 0.5rem 0;
   color: var(--charcoal-grey);
 }
+.facebook-embed-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem 0 0 0;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.facebook-embed-container > .fb-post,
+.facebook-embed-container > .fb-post > span,
+.facebook-embed-container > .fb-post > span > iframe {
+  max-width: 100% !important;
+}
