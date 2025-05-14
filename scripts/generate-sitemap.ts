@@ -1,9 +1,9 @@
-import * as fs from "fs"; // Node.js file system module
-import * as path from "path"; // Node.js path module
-
-// Import the services data from your addServices.ts file
-// Adjust the path if your addServices.ts file is located elsewhere
-import { servicesData } from "../src/firebase/addServices"; // Assuming addServices.ts is in src/
+import * as fs from "fs";
+import * as path from "path";
+// Ensure servicesData is properly typed. If not, you might need to provide one.
+// For example: interface Service { url: string; [key: string]: any; }
+// And then: import { servicesData } from "../src/firebase/addServices" as Service[];
+import { servicesData } from "../src/firebase/addServices";
 
 interface RouteInfo {
   path: string;
@@ -18,48 +18,43 @@ interface RouteInfo {
   priority: number;
 }
 
-// --- Configuration ---
 const DOMAIN = "https://plumbperfectwenatchee.com";
-const SITEMAP_OUTPUT_PATH = path.resolve(__dirname, "../../public/sitemap.xml");
-// Note: __dirname in a script run by ts-node from ./scripts/ will be ./scripts
-// So, ../../public/ will correctly point to your_project_root/public/
+// Corrected path assuming 'public' directory is at the project root.
+// __dirname in 'scripts/generate-sitemap.ts' is '.../plumb-perfect/scripts'
+// So, '../public/' refers to '.../plumb-perfect/public/'
+const SITEMAP_OUTPUT_PATH = path.resolve(__dirname, "../public/sitemap.xml");
 
-// --- Define Your Routes ---
-
-// Static routes from your App.tsx
 const staticRoutes: RouteInfo[] = [
   { path: "/", changefreq: "monthly", priority: 1.0 },
   { path: "/services", changefreq: "monthly", priority: 0.9 },
   { path: "/about", changefreq: "monthly", priority: 0.8 },
-  // Assuming '/contact' is a page. If it's part of ContactFooter and not a distinct page, remove or adjust.
-  // If you add a dedicated /contact page route in App.tsx, include it here.
-  // For now, I'll assume it might become one:
   { path: "/contact", changefreq: "yearly", priority: 0.7 },
 ];
 
-// Dynamic service routes from servicesData
-const dynamicServiceRoutes: RouteInfo[] = servicesData.map((service) => ({
-  path: `/service/${service.url}`,
-  changefreq: "yearly", // Content of individual service pages likely changes less often
-  priority: 0.7,
-}));
+// It's good practice to type the items within servicesData if possible.
+// For now, using 'any' to ensure compatibility if the type isn't readily available.
+const dynamicServiceRoutes: RouteInfo[] = servicesData.map(
+  (service: { url: string }) => ({
+    path: `/service/${service.url}`,
+    changefreq: "yearly",
+    priority: 0.7,
+  })
+);
 
-// Combine all routes
 const allRoutes: RouteInfo[] = [...staticRoutes, ...dynamicServiceRoutes];
 
-// --- Sitemap Generation Logic ---
 const generateSitemap = () => {
-  const today = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
+  const today = new Date().toISOString().split("T")[0];
 
   const sitemapEntries = allRoutes
     .map((route) => {
       return `
   <url>
-    <loc>${DOMAIN}${route.path}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>${route.changefreq}</changefreq>
-    <priority>${route.priority.toFixed(1)}</priority>
-  </url>`;
+    <loc><span class="math-inline">\{DOMAIN\}</span>{route.path}</loc>
+    <lastmod><span class="math-inline">\{today\}</lastmod\>
+<changefreq>{route.changefreq}</changefreq>
+<priority>${route.priority.toFixed(1)}</priority>
+</url>`;
     })
     .join("");
 
@@ -71,20 +66,24 @@ ${sitemapEntries}
 </urlset>`;
 
   try {
+    // Ensure the output directory exists
+    const outputDir = path.dirname(SITEMAP_OUTPUT_PATH);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+      console.log(`Created directory: ${outputDir}`);
+    }
+
     fs.writeFileSync(SITEMAP_OUTPUT_PATH, sitemapXml.trim());
     console.log(`✅ Sitemap generated successfully at ${SITEMAP_OUTPUT_PATH}`);
   } catch (error) {
     console.error("❌ Error generating sitemap:", error);
-    process.exit(1); // Exit with error code
+    process.exit(1); // Exit with an error code if generation fails
   }
 };
 
-// --- Execute Script ---
+// This CommonJS pattern correctly executes the function when the script is run directly.
 if (require.main === module) {
-  // This check ensures the script runs only when executed directly (e.g., node generate-sitemap.ts)
-  // and not when imported by another module (though less relevant for this specific script).
   generateSitemap();
 }
 
-// Export for potential testing or programmatic use, though not strictly necessary for CLI execution
-export default generateSitemap;
+export default generateSitemap; // The export is fine, though not strictly necessary if only run as a script.
