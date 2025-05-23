@@ -1,23 +1,20 @@
-/* hero.css */
-
 .hero {
   text-align: center;
-  position: relative; /* For positioning the image and fade */
+  position: relative;
 }
 
 .hero-logo {
   width: 75%;
-  max-width: 500px; /* Limit the logo size */
-  margin: 3rem auto; /* Center the logo */
+  max-width: 500px;
+  margin: 3rem auto;
 }
 
-/* Loading state styles */
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 200px; /* Ensure some minimum height */
+  min-height: 200px;
 }
 
 .loading-spinner {
@@ -39,7 +36,6 @@
   }
 }
 
-/* Error state styles */
 .error-container {
   color: var(--copper);
   text-align: center;
@@ -51,11 +47,11 @@
 .hero-image {
   position: relative;
   width: 100%;
-  height: auto; /* Adjust height automatically based on width */
+  height: auto;
   background-size: contain;
   background-position: top;
-  background-repeat: no-repeat; /* Prevent the image from tiling */
-  aspect-ratio: 16 / 4; /* Maintain a 16:9 aspect ratio */
+  background-repeat: no-repeat;
+  aspect-ratio: 16 / 4;
   border-radius: 8px;
   border-bottom: 2px solid var(--slate-grey);
 }
@@ -66,8 +62,8 @@
   line-height: 1.4;
   margin: 0 0 1rem 0;
   text-align: center;
-  position: relative; /* To sit above the fade */
-  padding: 0 0 2rem 0; /* Add some padding to the text */
+  position: relative;
+  padding: 0 0 2rem 0;
 }
 
 .hero-text.end {
@@ -87,7 +83,7 @@
   padding: 1rem 1rem 2rem 1rem;
   border-radius: 8px;
   box-shadow: 0 12px 24px rgb(0, 0, 0, 0.1);
-  position: relative; /* To sit above the fade */
+  position: relative;
 }
 
 .hero-hours h2 {
@@ -108,6 +104,7 @@
   margin: 0.5rem 0;
   color: var(--charcoal-grey);
 }
+
 .facebook-embed-container {
   display: flex;
   justify-content: center;
@@ -116,10 +113,32 @@
   margin: 2rem 0 0 0;
   padding: 0 0.5rem;
   box-sizing: border-box;
+  min-height: 150px;
 }
 
-.facebook-embed-container > .fb-post,
-.facebook-embed-container > .fb-post > span,
-.facebook-embed-container > .fb-post > span > iframe {
+.facebook-embed-container > .fb-page,
+.facebook-embed-container > .fb-page > span,
+.facebook-embed-container > .fb-page > span > iframe {
   max-width: 100% !important;
+}
+
+.facebook-loading-message,
+.facebook-no-post-message {
+  text-align: center;
+  padding: 1rem;
+  color: var(--charcoal-grey);
+  font-style: italic;
+}
+
+.facebook-error-message {
+  text-align: center;
+  padding: 1rem;
+  color: var(--copper);
+  border: 1px solid var(--copper-light, #e57373);
+  background-color: var(--copper-x-light, #ffebee);
+  border-radius: 4px;
+}
+
+.facebook-error-message p {
+  margin: 0.5rem 0;
 }

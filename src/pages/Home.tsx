@@ -1,61 +1,51 @@
-// src/pages/Home.tsx
-import React, { useEffect, useRef } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 import Hero from "../components/Hero";
 import Review from "../components/Review";
 import History from "../components/History";
 import ServiceHighlight from "../components/ServiceHighlight";
 
-// --- Configuration ---
-// Use your actual Facebook App ID here
 const FACEBOOK_APP_ID = "1339044877361334";
-// Use the same valid SDK version as in index.html
 const FACEBOOK_SDK_VERSION = "v19.0";
-
-// --- ASSUMPTION ---
-// SDK script is loaded via index.html as configured above.
-// @types/facebook-js-sdk is installed (`npm install --save-dev @types/facebook-js-sdk`)
+const FACEBOOK_PAGE_URL = "https://www.facebook.com/PlumbPerfectWenatchee";
 
 function Home() {
-  // 1. Create a ref for the container element (typed for TypeScript)
   const embedContainerRef = useRef<HTMLDivElement>(null);
+  const [fbWidth, setFbWidth] = useState(
+    typeof window !== "undefined"
+      ? Math.min(500, window.innerWidth < 549 ? window.innerWidth - 50 : 500)
+      : 500
+  );
 
-  // 2. Use useEffect to initialize SDK and parse embed after component mounts
   useEffect(() => {
-    // Check if the global FB object is available (SDK script loaded)
+    function handleResize() {
+      setFbWidth(
+        Math.min(500, window.innerWidth < 549 ? window.innerWidth - 50 : 500)
+      );
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     if (window.FB) {
       try {
-        // Initialize the SDK explicitly BEFORE parsing
-        console.log(
-          `Calling FB.init with App ID: ${FACEBOOK_APP_ID} and Version: ${FACEBOOK_SDK_VERSION}`
-        );
         window.FB.init({
           appId: FACEBOOK_APP_ID,
-          xfbml: true, // Process XFBML tags on page load (good practice)
+          xfbml: true,
           version: FACEBOOK_SDK_VERSION,
         });
-        console.log("FB.init called successfully.");
-
-        // Now that init is called, parse the specific container for embeds
         if (embedContainerRef.current) {
-          console.log(
-            "Attempting to parse Facebook embed in:",
-            embedContainerRef.current
-          );
           window.FB.XFBML.parse(embedContainerRef.current);
-        } else {
-          console.log("Container ref not set when parse was attempted.");
         }
       } catch (error) {
         console.error("Error initializing or parsing Facebook SDK:", error);
       }
     } else {
-      // This might log briefly if the effect runs before the async SDK fully executes
-      console.log("Facebook SDK (window.FB) not available yet.");
+      console.warn(
+        "Facebook SDK (window.FB) not found. Ensure it is loaded before this component."
+      );
     }
-
-    // 3. Empty dependency array []: effect runs once after initial mount (or twice in StrictMode)
-  }, []);
+  }, [fbWidth]); // re-parse when width changes
 
   return (
     <div className="page">
@@ -63,26 +53,27 @@ function Home() {
       <History />
       <Review />
       <ServiceHighlight />
-      {/* 4. Attach the ref to the container div */}
       <div className="facebook-embed-container" ref={embedContainerRef}>
-        {/* The fb-post element that the SDK will find and replace */}
         <div
-          className="fb-post"
-          data-href="https://www.facebook.com/PlumbPerfectWenatchee/posts/pfbid0gNhkRDH6U858p8yYM1Sf7BL8w97PqT4wr5BbDjbcRvroffNJTc1SbM1xEgevCnWsl"
-          data-width="550" // Define a max width for the embed
-          data-adapt-container-width="true" // Allow shrinking below data-width
-          data-show-text="true"
+          className="fb-page"
+          data-href={FACEBOOK_PAGE_URL}
+          data-tabs="timeline"
+          data-width={fbWidth}
+          data-height="700"
+          data-adapt-container-width="false"
+          data-small-header="true"
+          data-hide-cover="true"
+          data-show-facepile="false"
+          data-lazy="true"
         >
-          {/* Fallback content shown before/if embed fails */}
           <blockquote
-            cite="https://www.facebook.com/PlumbPerfectWenatchee/posts/pfbid0gNhkRDH6U858p8yYM1Sf7BL8w97PqT4wr5BbDjbcRvroffNJTc1SbM1xEgevCnWsl"
+            cite={FACEBOOK_PAGE_URL}
             className="fb-xfbml-parse-ignore"
           >
-            <p>Loading Facebook post...</p> {/* Simple loading/fallback text */}
+            <a href={FACEBOOK_PAGE_URL}>Plumb Perfect Wenatchee</a>
           </blockquote>
         </div>
-      </div>{" "}
-      {/* End of facebook-embed-container */}
+      </div>
       <p className="call-to-action">Find us on Facebook and Instagram!</p>
       <div className="hero-text end">
         <p>
@@ -92,4 +83,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;
